@@ -1,0 +1,60 @@
+window.addEventListener("load",bindevents);
+//inputs and buttons
+
+let buttons;
+let output;
+
+function bindevents(){
+    output=document.getElementById("textdisplay");
+    buttons=document.querySelectorAll(".btn");//accumulate in an array
+    buttons.forEach(button=>button.addEventListener("click",()=>{buttonPress(button)}));
+
+}
+
+function buttonPress(button){
+
+    if (button.innerText==="="){
+        console.log("hello");
+        evaluateExpression(output.value);
+        return;
+        
+    }
+    else if(button.innerText==="C"){
+        clearText();
+        return;
+        
+
+    }
+    else if(button.innerText==="AC"){
+        allClear();
+        return;
+    }
+
+    output.value+=button.innerText;
+    
+
+    console.log(button);
+
+
+}
+
+function evaluateExpression(){
+    try{
+        output.value=eval(output.value);
+
+    }
+    catch(err){
+
+        output.value="INVALID INPUT"
+    }
+   
+}
+
+function allClear(){
+    output.value="";
+    
+}
+
+function clearText(){
+   output.value= output.value.substring(0,output.value.length-1);
+}
